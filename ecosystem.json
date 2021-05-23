@@ -1,0 +1,26 @@
+{
+    "apps": [
+        {
+            "name": "capitolis",
+            "script": "index.js",
+            "log_date_format": "YYYY-MM-DD HH:mm Z",
+            "out_file": "/home/felixp/sites/capitolis/logs/out.log",
+            "error_file": "/home/felixp/sites/capitolis/logs/out.log",
+            "env": {
+                "NODE_ENV": "production",
+                "PORT": 3015
+            }
+        }
+    ],
+    "deploy": {
+        "production": {
+            "user": "felixp",
+            "host": "37.139.22.221",
+            "ref": "origin/master",
+            "repo": "https://github.com/felixpis/capitolis-transactions-server.git",
+            "path": "/home/felixp/sites/capitolis/capitolis-transactions-server",
+            "pre-deploy-local": "echo 'Started to deploy'",
+            "post-deploy": "npm install && pm2 startOrRestart ecosystem.json"
+        }
+    }
+}

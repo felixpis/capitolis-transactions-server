@@ -1,15 +1,14 @@
 const express = require('express');
 require('./database');
 const routes = require('./routes');
+const morgan = require('morgan');
 const app = express();
 
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-if (app.get('env') == 'development') {
-    const logger = require('morgan');
-    app.use(logger('dev'));
-}
+
 
 routes(app);
 
